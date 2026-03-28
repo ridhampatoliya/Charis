@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Charis – Resume Tailor",
+  "version": "0.1.0",
+  "description": "Charis tailors your resume to any LinkedIn job posting using AI — preserving length, structure, and page count.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Charis – Resume Tailor",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/jobs/*"],
+      "js": ["content/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["storage", "activeTab", "scripting", "downloads"],
+  "host_permissions": ["https://www.linkedin.com/*", "https://api.openai.com/*"],
+  "web_accessible_resources": [{"resources": ["lib/pdf.worker.mjs"], "matches": []}]
+}

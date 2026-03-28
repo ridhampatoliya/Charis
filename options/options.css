@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.header h1 {
+  margin: 0 0 4px 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+/* ---------- Settings ---------- */
+
+.setting-group {
+  margin-bottom: 24px;
+}
+
+.setting-title {
+  margin: 0 0 6px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+}
+
+.setting-desc {
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.setting-desc a {
+  color: #0a66c2;
+  text-decoration: none;
+}
+
+.setting-desc a:hover {
+  text-decoration: underline;
+}
+
+/* Key input row */
+
+.key-input-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.key-input {
+  flex: 1;
+  padding: 9px 12px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: monospace;
+  color: #333;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.key-input:focus {
+  border-color: #0a66c2;
+}
+
+.key-input::placeholder {
+  color: #aaa;
+  font-family: monospace;
+}
+
+.btn-icon {
+  padding: 8px 10px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  background: #f8f9fa;
+  color: #555;
+  font-size: 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.btn-icon:hover {
+  border-color: #0a66c2;
+  background: #f0f4f8;
+}
+
+/* Actions row */
+
+.key-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-save {
+  padding: 8px 20px;
+  background: #0a66c2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-save:hover {
+  background: #004182;
+}
+
+.btn-save:disabled {
+  background: #93b8db;
+  cursor: not-allowed;
+}
+
+.key-status {
+  font-size: 12px;
+  color: #666;
+  transition: opacity 0.3s;
+}
+
+.key-status.status-ok {
+  color: #057642;
+  font-weight: 500;
+}
+
+.key-status.status-err {
+  color: #c00;
+  font-weight: 500;
+}

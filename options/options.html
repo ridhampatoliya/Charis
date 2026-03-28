@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charis – Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Settings</h1>
+      <p class="subtitle">Charis – Resume Tailor</p>
+    </header>
+    <main class="main">
+      <section class="setting-group">
+        <h2 class="setting-title">OpenAI API Key</h2>
+        <p class="setting-desc">
+          Paste your OpenAI API key below. Get one at
+          <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a>.
+        </p>
+        <div class="key-input-row">
+          <input
+            type="password"
+            id="api-key-input"
+            class="key-input"
+            placeholder="sk-proj-..."
+            spellcheck="false"
+            autocomplete="off"
+          />
+          <button type="button" id="toggle-visibility" class="btn-icon" title="Show/hide key">
+            <span id="eye-icon">Show</span>
+          </button>
+        </div>
+        <div class="key-actions">
+          <button type="button" id="save-key-btn" class="btn-save">Save</button>
+          <span id="key-status" class="key-status"></span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

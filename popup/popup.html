@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Charis – Resume Tailor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <img class="brand-icon" src="../icons/icon48.png" width="28" height="28" alt="Charis logo" />
+        <div>
+          <h1>Charis</h1>
+          <p class="subtitle">AI-powered resume tailoring</p>
+        </div>
+      </div>
+    </header>
+    <div class="stepper" id="stepper">
+      <div class="step step-active" data-step="1">
+        <div class="step-dot">1</div>
+        <span class="step-label">Resume</span>
+      </div>
+      <div class="step-line" data-line="1"></div>
+      <div class="step" data-step="2">
+        <div class="step-dot">2</div>
+        <span class="step-label">Job</span>
+      </div>
+      <div class="step-line" data-line="2"></div>
+      <div class="step" data-step="3">
+        <div class="step-dot">3</div>
+        <span class="step-label">Tailor</span>
+      </div>
+      <div class="step-line" data-line="3"></div>
+      <div class="step" data-step="4">
+        <div class="step-dot">4</div>
+        <span class="step-label">Download</span>
+      </div>
+    </div>
+    <div class="reset-banner hidden" id="top-reset-banner">
+      <span>Ready for another job?</span>
+      <button type="button" class="btn-pill" id="top-reset-btn">Reset</button>
+    </div>
+    <main class="main">
+      <input type="file" id="file-input" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="file-input" />
+      <div id="upload-zone" class="upload-zone">
+        <label for="file-input" class="upload-label">Upload resume (PDF or DOCX)</label>
+      </div>
+      <div id="current-resume" class="current-resume hidden">
+        <span class="current-name">—</span>
+        <button type="button" id="replace-btn" class="btn-link">Replace</button>
+      </div>
+      <div class="job-section">
+        <button type="button" id="get-job-btn" class="btn-primary">
+          <span class="btn-text">Get job from this page</span>
+          <span class="spinner hidden" id="job-spinner"></span>
+        </button>
+        <p class="hint" id="job-hint"></p>
+        <div id="job-preview" class="job-preview hidden"></div>
+      </div>
+      <div class="tailor-section hidden" id="tailor-section">
+        <p class="ready-hint" id="ready-hint">Resume + job ready</p>
+        <div class="mode-toggle">
+          <label class="mode-option">
+            <input type="radio" name="tailor-mode" value="conservative" checked />
+            <span class="mode-label">Steady</span>
+            <span class="mode-desc">Keyword-focused rewrite, titles unchanged</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="tailor-mode" value="aggressive" />
+            <span class="mode-label">Aggressive</span>
+            <span class="mode-desc">Creative reframing, title alignment, stronger impact</span>
+          </label>
+          <label class="mode-option">
+            <input type="radio" name="tailor-mode" value="wizard" />
+            <span class="mode-label">Wizard</span>
+            <span class="mode-desc">High-magic rewrite, smart title upgrades, JD-aligned stories</span>
+          </label>
+        </div>
+        <div class="refine-panel" id="refine-panel">
+          <div class="refine-header">
+            <span class="refine-title">Refine (optional)</span>
+            <span class="refine-subtitle">Pick one action or add a short custom tweak.</span>
+          </div>
+          <div class="refine-actions">
+            <button type="button" class="refine-btn" data-tier="free" data-prompt="Tighten the summary to two sentences; keep role focus and strongest metrics." title="Reduce summary to 2 sentences with clear role focus.">Tighten Summary</button>
+            <button type="button" class="refine-btn" data-tier="free" data-prompt="Shorten bullets to 16–18 words; remove filler and redundancies." title="Shorter bullets, same meaning.">Shorten Bullets</button>
+            <button type="button" class="refine-btn" data-tier="free" data-prompt="Upgrade action verbs to strong, professional alternatives without changing facts." title="Stronger verbs, no new claims.">Boost Action Verbs</button>
+            <button type="button" class="refine-btn" data-tier="free" data-prompt="Normalize tense, punctuation, and spacing across bullets and sections." title="Consistent tense, punctuation, and spacing.">Normalize Formatting</button>
+            <button type="button" class="refine-btn" data-tier="pro" data-prompt="ATS Keyword Boost: weave job-description keywords where truthfully supported, especially in Skills and Experience." data-desc="ATS-focused keyword alignment." title="ATS-focused keyword alignment.">ATS Boost</button>
+            <button type="button" class="refine-btn" data-tier="pro" data-prompt="Relevance Reordering: reorder bullets and sections by job-description priority, dropping low-value items." data-desc="Reorder content by JD relevance." title="Reorder content by JD relevance.">Relevance Order</button>
+            <button type="button" class="refine-btn" data-tier="pro" data-prompt="Page-Fit Optimization: trim low-impact bullets and skills to stay one page without changing facts." data-desc="Aggressive one-page fit." title="Aggressive one-page fit.">Page Fit</button>
+            <button type="button" class="refine-btn" data-tier="pro" data-prompt="Role Alignment: refine titles and summary framing to better match the target job without inflating seniority." data-desc="Align framing to target role." title="Align framing to target role.">Role Alignment</button>
+          </div>
+          <div class="refine-custom-label">Custom tweak</div>
+          <textarea id="refine-custom" class="refine-custom" rows="2" maxlength="80" placeholder="Add a short, specific tweak (e.g., emphasize leadership in Experience)."></textarea>
+          <div class="refine-counter"><span id="refine-counter">0</span>/80</div>
+        </div>
+        <button type="button" id="tailor-btn" class="btn-accent">
+          <span class="btn-text">Tailor my resume</span>
+          <span class="spinner hidden" id="tailor-spinner"></span>
+        </button>
+        <div id="tailor-result" class="tailor-result hidden"></div>
+        <div id="template-section" class="template-section hidden">
+          <p class="template-label">Choose a template</p>
+          <div class="template-picker">
+            <label class="template-card template-selected" data-template="compact">
+              <input type="radio" name="resume-template" value="compact" checked />
+              <div class="template-preview template-preview-classic">
+                <div class="tp-line tp-thick"></div>
+                <div class="tp-line tp-thin"></div>
+                <div class="tp-rule"></div>
+                <div class="tp-line tp-thin"></div>
+                <div class="tp-line tp-thin tp-short"></div>
+                <div class="tp-line tp-thin tp-short"></div>
+              </div>
+              <span class="template-name">Classic (No Summary)</span>
+              <span class="template-desc">Single-column, summary removed</span>
+            </label>
+            <label class="template-card" data-template="modern">
+              <input type="radio" name="resume-template" value="modern" />
+              <div class="template-preview template-preview-modern">
+                <div class="tp-line tp-thick tp-left"></div>
+                <div class="tp-line tp-thin tp-left tp-muted"></div>
+                <div class="tp-accent-bar"></div>
+                <div class="tp-line tp-thin tp-left"></div>
+                <div class="tp-line tp-thin tp-short tp-left"></div>
+                <div class="tp-line tp-thin tp-short tp-left"></div>
+              </div>
+              <span class="template-name">Modern</span>
+              <span class="template-desc">Clean, sans-serif</span>
+            </label>
+            <label class="template-card" data-template="executive">
+              <input type="radio" name="resume-template" value="executive" />
+              <div class="template-preview template-preview-executive">
+                <div class="tp-line tp-thick"></div>
+                <div class="tp-line tp-thin tp-muted tp-exec-contact"></div>
+                <div class="tp-exec-rule"></div>
+                <div class="tp-spacer"></div>
+                <div class="tp-line tp-thin tp-left"></div>
+                <div class="tp-line tp-thin tp-short tp-left"></div>
+                <div class="tp-spacer"></div>
+                <div class="tp-line tp-thin tp-left"></div>
+              </div>
+              <span class="template-name">Executive</span>
+              <span class="template-desc">Airy, no summary</span>
+            </label>
+            <label class="template-card" data-template="classic">
+              <input type="radio" name="resume-template" value="classic" />
+              <div class="template-preview template-preview-classic">
+                <div class="tp-line tp-thick"></div>
+                <div class="tp-line tp-thin"></div>
+                <div class="tp-rule"></div>
+                <div class="tp-line tp-thin"></div>
+                <div class="tp-line tp-thin tp-short"></div>
+                <div class="tp-line tp-thin tp-short"></div>
+              </div>
+              <span class="template-name">Classic</span>
+              <span class="template-desc">Traditional, serif</span>
+            </label>
+          </div>
+        </div>
+        <div id="download-row" class="download-row hidden">
+          <button type="button" id="download-btn" class="btn-download btn-download-pdf">
+            <span class="btn-text" id="download-btn-text">Download PDF</span>
+            <span class="spinner hidden" id="download-spinner"></span>
+          </button>
+          <button type="button" id="download-docx-btn" class="btn-download btn-download-docx" title="Download as editable Word document">
+            <span class="btn-text" id="download-docx-btn-text">Download DOCX</span>
+            <span class="spinner hidden" id="download-docx-spinner"></span>
+          </button>
+        </div>
+      </div>
+      <div class="status-row">
+        <p id="status" class="status" aria-live="polite"></p>
+        <button type="button" id="reset-btn" class="btn-link reset-btn" title="Reset flow">Reset</button>
+      </div>
+    </main>
+    <footer class="footer">
+      <a href="#" id="open-options">Settings</a>
+    </footer>
+  </div>
+  <script src="popup.bundle.js"></script>
+</body>
+</html>
