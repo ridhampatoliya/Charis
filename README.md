@@ -35,10 +35,15 @@ Your resume and job description are used only to generate a tailored version. Th
 
 ## Screenshots
 
-![Upload resume](assets/screenshots/01-upload.png)
-![Job captured + modes](assets/screenshots/02-job.png)
-![Refine actions](assets/screenshots/03-refine.png)
-![Download outputs](assets/screenshots/04-download.png)
+<p align="center">
+  <img src="assets/screenshots/01-upload.png" alt="Upload resume" width="260" />
+  <img src="assets/screenshots/02-job.png" alt="Job captured and tailoring modes" width="260" />
+</p>
+
+<p align="center">
+  <img src="assets/screenshots/03-refine.png" alt="Refinement actions" width="260" />
+  <img src="assets/screenshots/04-download.png" alt="Download outputs" width="260" />
+</p>
 
 ## License
 
