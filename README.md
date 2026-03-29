@@ -35,15 +35,37 @@ Your resume and job description are used only to generate a tailored version. Th
 
 ## Screenshots
 
-<p align="center">
-  <img src="assets/screenshots/01-upload.png" alt="Upload resume" width="260" />
-  <img src="assets/screenshots/02-job.png" alt="Job captured and tailoring modes" width="260" />
-</p>
+### 1. Upload your resume
 
 <p align="center">
-  <img src="assets/screenshots/03-refine.png" alt="Refinement actions" width="260" />
-  <img src="assets/screenshots/04-download.png" alt="Download outputs" width="260" />
+  <img src="assets/screenshots/01-upload.png" alt="Upload resume" width="320" />
 </p>
+
+Start by uploading your PDF or DOCX resume. Charis uses this as the base document for tailoring.
+
+### 2. Capture the job and choose a mode
+
+<p align="center">
+  <img src="assets/screenshots/02-job.png" alt="Job captured and tailoring modes" width="320" />
+</p>
+
+Pull the job description from the active LinkedIn page, then pick **Steady**, **Aggressive**, or **Wizard** depending on how strongly you want the resume reframed.
+
+### 3. Apply optional refinements
+
+<p align="center">
+  <img src="assets/screenshots/03-refine.png" alt="Refinement actions" width="320" />
+</p>
+
+Use targeted refinement actions such as ATS boosting, bullet shortening, relevance ordering, or role alignment.
+
+### 4. Review changes and download
+
+<p align="center">
+  <img src="assets/screenshots/04-download.png" alt="Download outputs" width="320" />
+</p>
+
+Review the generated changes, inspect gaps to address, choose a template, and export the tailored resume.
 
 ## License
 
